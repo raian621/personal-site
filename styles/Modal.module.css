@@ -1,0 +1,28 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: blue;
+    padding: 1em;
+    border-radius: 10px;
+    transition: all 150ms cubic-bezier(1, 0.1, 0.1, 0.5)
+}
+
+.modalInvisible {
+    top: 0;
+    display: none;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalHeader button {
+    font-size: 1.5em;
+    background-color: #00000000;
+    border: none;
+}
