@@ -4,6 +4,7 @@
   --palette-accent: #14213D;
   --palette-pop: #FCA311;
   --palette-cool: #ebebeb;
+  --main-font: 'Source Sans Pro', sans-serif;
 }
 
 * {
@@ -14,6 +15,7 @@
 
 html,
 body {
+  font-family: var(--main-font);
   max-width: 100vw;
   min-height: 100%;
   overflow-x: hidden;

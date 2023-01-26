@@ -5,6 +5,7 @@ import Box from '../components/Box'
 import { useState } from 'react'
 import Revealer from '../components/Revealer'
 import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
+import { AboutMe, Contact, Projects } from '../components/home'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,7 +29,7 @@ export default function Home() {
           <a href="https://twitter.com/ryanbell621"><FaTwitterSquare size={50} color="#1d9bf0"/></a>
         </div>
         <Box backgroundColor="white" width="100%" height="2px"/>
-        <h1 className={styles.menuTitle}>Ryan Bell</h1>
+        <h1 className={styles.menuTitle}>Big Chungus</h1>
         <Box backgroundColor="white" width="100%" height="2px"/>
         <p className={styles.menuText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <Box backgroundColor="white" width="100%" height="2px"/>
@@ -46,9 +47,10 @@ export default function Home() {
           </Revealer>     
         </div>
       </div>
-      {showAboutMe && <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>}
-      {showProjects && <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>}
-      {showContact && <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>}
+      <Box width="100%"/>
+      {showAboutMe && <AboutMe/>}
+      {showProjects && <Projects/>}
+      {showContact && <Contact/>}
     </>
   )
 }
