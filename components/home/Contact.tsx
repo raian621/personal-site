@@ -4,7 +4,6 @@ export const Contact = () => {
 	return (
 		<section id='contact' className={styles.contact}>
 			<div className={styles.contactMeForm}>
-				<h2>Contact Me</h2>
 				<form method='post'>
 					<fieldset className={styles.nameFields}>
 						<div className={styles.nameField}>

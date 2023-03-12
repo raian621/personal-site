@@ -1,20 +1,25 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import styles from '../styles/Modal.module.css'
 
-const Modal = ({ children, visible, setVisible, heading } : {
+const Modal = ({ children, visible, toggleVisible, heading } : {
   heading:string, 
-  children:ReactNode, 
+  children:ReactNode,
   visible:boolean
-  setVisible:Dispatch<SetStateAction<boolean>>
+  toggleVisible:Function
 }) => {
   return(
+    <>
+    <div className={styles.modalBackground} onClick={() => toggleVisible()}/>
     <div className={visible ? styles.modal : styles.modalInvisble}>
       <div className={styles.modalHeader}>
         <h1>{ heading }</h1>
-        <button onClick={() => setVisible(false)}>x</button>
+        <button onClick={() => toggleVisible()}>x</button>
       </div>
-      { children }
+      <div className={styles.modalChild}>
+        { children }
+      </div>
     </div>
+    </>
   );
 }
 
