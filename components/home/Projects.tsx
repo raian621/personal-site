@@ -1,4 +1,4 @@
-import styles from '../../styles/home/Projects.module.css';
+import styles from 'styles/home/Projects.module.css';
 
 export const Projects = () => {
     return (

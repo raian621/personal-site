@@ -1,4 +1,4 @@
-const Box = ({ width, height, borderRadius, backgroundColor } : {
+export const Box = ({ width, height, borderRadius, backgroundColor } : {
   width?: string, height?: string, borderRadius?: string, backgroundColor?: string 
 }) => {
   return <div style={{
@@ -8,5 +8,3 @@ const Box = ({ width, height, borderRadius, backgroundColor } : {
     backgroundColor: backgroundColor || "black"
   }}/>
 }
-
-export default Box;

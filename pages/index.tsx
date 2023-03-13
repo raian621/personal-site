@@ -1,11 +1,10 @@
 import Head from 'next/head'
+import styles from 'styles/Home.module.css'
 import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
-import Box from '../components/Box'
 import { useState } from 'react'
 import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
-import { AboutMe, Contact, Projects } from '../components/home'
-import Modal from '../components/Modal'
+import { AboutMe, Contact, Projects } from 'components/home'
+import { Box, Modal } from 'components';
 
 const inter = Inter({ subsets: ['latin'] })
 

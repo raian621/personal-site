@@ -1,7 +1,9 @@
-import { Dispatch, ReactNode, SetStateAction } from "react";
-import styles from '../styles/Modal.module.css'
+'use client'
 
-const Modal = ({ children, visible, toggleVisible, heading } : {
+import { Dispatch, ReactNode, SetStateAction } from "react";
+import styles from 'styles/Modal.module.css'
+
+export const Modal = ({ children, visible, toggleVisible, heading } : {
   heading:string, 
   children:ReactNode,
   visible:boolean
