@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
-import styles from 'styles/Projects.module.css'
+import styles from 'styles/AddProjects.module.css'
 import { SyntheticEvent, useState } from 'react'
-import { encode } from 'punycode'
+import { SanitizedHTML } from 'components/SanitizedHTML'
+import { ProjectCard } from 'components/ProjectCard'
+import { addProject } from 'lib/addProject'
+import { uploadFile } from 'lib/uploadFile'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,50 +13,16 @@ export default function AddProject() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [sourceURL, setSourceURL] = useState("");
-  const [file, setFile] = useState<File|null>();
+  const [thumbnail, setThumbnail] = useState<File|null>();
+  const [htmlInput, setHtmlInput] = useState("");
 
-  const handleSubmit = (e:SyntheticEvent) => {
+  const handleSubmit = async(e:SyntheticEvent) => {
     e.preventDefault();
-
-    const getBase64 = (file:File|null|undefined) => {
-      return new Promise<string|ArrayBuffer|null>((resolve, reject) => {
-        const reader = new FileReader();
-        if (file) {
-          console.log('sdafasdfhasjkdhfkasd')
-          reader.readAsDataURL(file);
-        }
-        console.log(file)
-        reader.onload = () => {
-          console.log(reader.result)
-          resolve(reader.result)
-        };
-        reader.onerror = error => reject(error);
-      });
-    }
-
+    let progress = 0;
     
-    getBase64(file)
-    .then((encodedFile) => {
-        const formData = new FormData()
-
-        formData.append('file', encodedFile as string)
-        formData.append('fileName', file ? file.name : "");
-        formData.append('title', title);
-        formData.append('description', description);
-        formData.append('sourceURL', sourceURL);
-
-        fetch('/api/projects', {
-          method: 'POST',
-          body: JSON.stringify({
-            title,
-            description,
-            sourceURL,
-            file: encodedFile,
-            fileName: file?.name
-          })
-        })
-      })
-      .catch(error => console.log(error));
+    if (thumbnail)
+      await uploadFile(thumbnail, '/public/images', thumbnail?.name, { progress: progress });
+    await addProject({ title, description, sourceURL, htmlInput })
   }
 
   return (
@@ -66,27 +35,59 @@ export default function AddProject() {
       </Head>
       <div className={styles.wrapper}>
         <h1>Add Project</h1>
-        <form onSubmit={handleSubmit}>
-          <label>Title</label>
-          <input 
-            value={title} 
-            onChange={e => setTitle(e.target.value)}
-          />
-          <label>Description</label>
-          <input 
-            value={description} 
-            onChange={e => setDescription(e.target.value)}
-          />
-          <label>Source URL</label>
-          <input></input>
-          <label>File</label>
-          <input 
-            type="file" 
-            onChange={e => setFile(e.target.files?.item(0))}
-          >
-          </input>
+        <form className={styles.projectForm} onSubmit={handleSubmit}>
+          <fieldset className={styles.projectField}>
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              name="title" 
+              value={title} 
+              onChange={e => setTitle(e.target.value)}
+            />
+          </fieldset>
+          <fieldset className={styles.projectField}>
+            <label htmlFor="description">Description</label>
+            <input
+              type="text"
+              name="description"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+            />
+          </fieldset>
+          <fieldset className={styles.projectField}>
+            <label htmlFor="sourceURL">Source URL</label>
+            <input 
+              type="text"
+              name="sourceURL"
+              onChange={e => setSourceURL(e.target.value)}
+              value={sourceURL}
+            />
+          </fieldset>
+          <fieldset className={styles.projectField}>
+            <label htmlFor="thumbnail">Thumbnail</label>
+            <input
+              name="thumbnail"
+              type="file" 
+              onChange={e => setThumbnail(e.target.files?.item(0))}
+            />
+          </fieldset>
+          <fieldset className={styles.projectField}>
+            <label htmlFor="htmlInput">HTML Input</label>
+            <textarea
+              name="htmlInput"
+              onChange={e => setHtmlInput(e.target.value)}
+              value={htmlInput}
+            />
+          </fieldset>
           <input type="submit"></input>
         </form>
+        <ProjectCard
+          title={title}
+          description={description}
+          thumbnail={thumbnail}
+          sourceURL={sourceURL}
+        />
+        <SanitizedHTML className={styles.wrapper} html={htmlInput}/>
       </div>
     </>
   );

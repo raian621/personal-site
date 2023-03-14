@@ -14,7 +14,6 @@ export async function getProjectData(id: string) {
     .use(remarkHtml)
     .process(matterResult.content)
 
-  console.log("AAAAAAAAAAAAAAAAAA\n\n", processedContent)
   return {
     id,
     content: processedContent.value,

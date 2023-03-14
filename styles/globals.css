@@ -3,7 +3,7 @@
   --palette-lines: #FFFFFF;
   --palette-accent: #14213D;
   --palette-pop: #FCA311;
-  --palette-cool: #ebebeb;
+  --palette-cool: #cfcfcf;
   --main-font: 'Source Sans Pro', sans-serif;
 }
 
@@ -22,7 +22,7 @@ body {
 }
 
 body {
-  color: var(--palette-cool);
+  color: var(--palette-lines);
   background-color: var(--palette-bg);
 }
 

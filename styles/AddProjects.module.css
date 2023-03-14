@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 50px auto;
+}
+
+.projectForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.projectField {
+  --input-round: 4px;
+  border: none;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.projectField textarea {
+  resize: vertical;
+  width: 100%;
+  height: 20em;
+}
+
+.projectField input[type="text"] {
+  background-color: var(--palette-cool);
+  color: black;
+  border: none;
+  border-radius: var(--input-round);
+  padding: 4px
+}
+
+.projectField input[type="file"] {
+  background-color: var(--palette-cool);
+  color: black;
+  border: none;
+  border-radius: var(--input-round);
+  padding: 4px
+}
+
+.projectField textarea {
+  background-color: var(--palette-cool);
+  color: black;
+  border: none;
+  border-radius: var(--input-round);
+  padding: var()
+}

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import styles from 'styles/Projects.module.css'
 import { getAllProjectIds, getProjectData } from 'lib/projects'
+import { SanitizedHTML } from 'components/SanitizedHTML'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,9 +33,7 @@ export default function Post({ postData } : { postData:any }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.wrapper}>
-        <div dangerouslySetInnerHTML={{ __html: postData.content }}/>
-      </div>
+      <SanitizedHTML className={styles.wrapper} html={postData.content}/>
     </>
   )
 }
